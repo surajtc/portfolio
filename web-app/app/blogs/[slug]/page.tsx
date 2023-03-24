@@ -32,8 +32,7 @@ export async function generateStaticParams() {
   const blogs = await res;
 
   return (
-    blogs &&
-    blogs.map((i) => ({
+    blogs!.map((i) => ({
       slug: i.slug.toString(),
     }))
   );
