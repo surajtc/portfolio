@@ -41,7 +41,7 @@ export async function generateStaticParams() {
 export default async function BlogPage({ params: { slug } }: Params) {
   const res: Promise<Blog | undefined> = getBlog(slug);
   const blog = await res;
-  console.log("here", blog);
+  
   return (
     <>
       <h2 className="text-3xl font-bold underline">Blog Details</h2>
