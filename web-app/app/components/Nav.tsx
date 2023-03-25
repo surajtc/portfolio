@@ -1,8 +1,13 @@
 "use client";
 
-import { Navbar, Button, Flowbite, DarkThemeToggle } from "flowbite-react";
+import { Navbar, Flowbite, DarkThemeToggle } from "flowbite-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Caveat } from "next/font/google";
+
+const caveat = Caveat({
+  subsets: ["latin"],
+});
 
 export default function Nav() {
   const path = usePathname();
@@ -10,8 +15,10 @@ export default function Nav() {
     <Navbar fluid border className="[&>div]:max-w-4xl">
       <Navbar.Brand as="div">
         <Link href="/">
-          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            {"<S/>"}
+          <span
+            className={`${caveat.className} self-center whitespace-nowrap text-2xl font-bold dark:text-white`}
+          >
+            {"< Suraj TC />"}
           </span>
         </Link>
       </Navbar.Brand>
