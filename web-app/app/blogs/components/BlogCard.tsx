@@ -1,49 +1,68 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useEffect, useState, useTransition } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import { BlogView } from "@/types";
 import { Button, Card } from "flowbite-react";
 import { HiHeart, HiOutlineHeart, HiShare } from "react-icons/hi2";
 import Link from "next/link";
+import { CgSpinner } from "react-icons/cg";
 
 interface Props {
   blog: BlogView;
 }
 
+interface Body {
+  slug: string;
+  likes: number;
+  offset: 1 | -1;
+}
+
+async function postLikes({ slug, likes, offset }: Body) {
+  const res = await fetch(`/api/blogs/${slug}/like`, {
+    method: "POST",
+    body: JSON.stringify({ likes, offset }),
+  });
+  const newBlog: BlogView = await res.json();
+
+  return newBlog;
+}
+
 export default function BlogCard({ blog }: Props) {
   const [data, setData] = useState(blog);
   const [isLiked, setIsLiked] = useState(false);
-  const [count, setCount] = useState(blog.likes);
-  const router = useRouter();
-  const [isPending, startTransition] = useTransition();
-  const [isFetching, setIsFetching] = useState(false);
 
-  const isMutating = isFetching || isPending;
+  // useEffect(() => {
+  //   const like = localStorage.getItem(data.slug) || false;
 
-  async function handleChange() {
-    setIsLiked(true);
-    setCount((p) => p + 1);
-    setIsFetching(true);
-    // Mutate external data source
-    const res = await fetch(`/api/blogs/${data.slug}/like`, {
-      method: "POST",
-      body: JSON.stringify({ likes: data.likes }),
-    });
-    const temp: BlogView = await res.json();
-    setData(temp);
-    setIsFetching(false);
-
-    startTransition(() => {
-      // Refresh the current route and fetch new data from the server without
-      // losing client-side browser or React state.
-      router.refresh();
-    });
-  }
+  //   if (like) {
+  //     localStorage.setItem(data.slug, "true");
+  //   } else {
+  //     localStorage.removeItem(data.slug);
+  //   }
+  //   setIsLiked(like === "true");
+  // }, [data]);
 
   useEffect(() => {
-    setCount(data.likes);
-  }, [data]);
+    const like = localStorage.getItem(blog.slug) === "true";
+    setIsLiked(like);
+  }, []);
+
+  useEffect(() => {
+    if (isLiked) {
+      localStorage.setItem(data.slug, "true");
+    } else {
+      localStorage.removeItem(data.slug);
+    }
+  }, [isLiked, data]);
+
+  const { mutate, isLoading } = useMutation({
+    mutationFn: postLikes,
+    onSuccess: (data) => {
+      setData(data);
+      setIsLiked((p) => !p);
+    },
+  });
 
   return (
     <Card
@@ -66,7 +85,6 @@ export default function BlogCard({ blog }: Props) {
         <Button
           outline={false}
           color="gray"
-          size="xs"
           className="border-none group-hover:text-blue-700"
         >
           Read More
@@ -75,14 +93,23 @@ export default function BlogCard({ blog }: Props) {
           <Button
             color="gray"
             className="hover:text-red-700 disabled:hover:bg-white focus:ring-red-500 focus:text-red-700 dark:bg-transparent dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-2 dark:disabled:hover:bg-gray-800"
-            onClick={handleChange}
+            onClick={() => {
+              mutate({
+                slug: data.slug,
+                likes: data.likes,
+                offset: isLiked ? -1 : 1,
+              });
+            }}
+            disabled={isLoading}
           >
-            {isLiked ? (
+            {isLoading ? (
+              <CgSpinner className="animate-spin" />
+            ) : isLiked ? (
               <HiHeart className="mr-2 h-4 w-4 font-bold" size="xs" />
             ) : (
               <HiOutlineHeart className="mr-2 h-4 w-4 font-bold" size="xs" />
             )}
-            <span className="text-sm">{count}</span>
+            <span className="text-sm">{data.likes}</span>
           </Button>
           <Button color="gray" size="xs" style={{ height: "auto" }}>
             <HiShare className="h-4 w-4" />

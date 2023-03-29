@@ -10,7 +10,7 @@ export type BlogView = {
   slug: string;
   title: string;
   description: string;
-  likes: string;
+  likes: number;
   cover: {
     url: string;
   };
