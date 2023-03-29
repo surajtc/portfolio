@@ -1,7 +1,6 @@
+import { Metadata } from "next";
 import getBlog from "@/lib/getBlog";
 import getBlogs from "@/lib/getBlogs";
-import { Blog } from "@/types";
-import { Metadata } from "next";
 
 type Params = {
   params: {
