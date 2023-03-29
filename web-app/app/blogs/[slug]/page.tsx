@@ -12,8 +12,7 @@ type Params = {
 export async function generateMetadata({
   params: { slug },
 }: Params): Promise<Metadata> {
-  const res: Promise<Blog | undefined> = getBlog(slug);
-  const blog = await res;
+  const { blog } = await getBlog(slug);
 
   if (!blog) {
     return {
@@ -28,29 +27,27 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  const res: Promise<Blog[] | undefined> = getBlogs();
-  const blogs = await res;
+  const { blogs } = await getBlogs();
 
-  return (
-    blogs!.map((i) => ({
-      slug: i.slug.toString(),
-    }))
-  );
+  return blogs!.map((i) => ({
+    slug: i.slug.toString(),
+  }));
 }
 
 export default async function BlogPage({ params: { slug } }: Params) {
-  const res: Promise<Blog | undefined> = getBlog(slug);
-  const blog = await res;
-  
+  const { blog } = await getBlog(slug);
+
+  if (!blog) {
+    return "loading...";
+  }
+
   return (
     <>
       <h2 className="text-3xl font-bold underline">Blog Details</h2>
-      {blog && (
-        <div>
-          Blog: {blog.title}
-          <p>{blog.id}</p>
-        </div>
-      )}
+      <div>
+        Blog: {blog.title}
+        <p>{blog.id}</p>
+      </div>
     </>
   );
 }
