@@ -1,12 +1,25 @@
 "use client";
 
+import likeBlog from "@/lib/likeBlog";
+import { Blog } from "@/types";
 import { Badge, Button, Card } from "flowbite-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HiHeart, HiOutlineHeart, HiShare } from "react-icons/hi2";
 
-export default function BlogCard() {
+interface Props {
+  blog: Blog;
+}
+
+export default function BlogCard({ blog }: Props) {
   const [isLiked, setIsLiked] = useState(false);
+
+  // useEffect(() => {
+  //   if (isLiked) {
+  //     likeBlog(blog.id, blog.likes);
+  //   }
+  // }, [isLiked, blog]);
+
   return (
     <Card
       imgAlt="text"
@@ -14,7 +27,7 @@ export default function BlogCard() {
       className="group shadow-sm hover:shadow-lg transition-shadow [&>div]:p-4 md:[&>div]:p-4 [&>div]:gap-2"
     >
       <h5 className="transition-colors group-hover:text-blue-700 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
-        Noteworthy technology acquisitions 2021
+        {blog.title}
       </h5>
       <p className="relative after:absolute after:inset-x-0 after:bottom-0 after:h-16 after:bg-gradient-to-t from-white dark:from-gray-800 text-md font-normal text-gray-700 dark:text-gray-400">
         Here are the biggest enterprise technology acquisitions of 2021 so far,
@@ -36,15 +49,12 @@ export default function BlogCard() {
             onClick={() => setIsLiked((prev) => !prev)}
           >
             {isLiked ? (
-              <HiHeart
-                className="mr-2 h-4 w-4 font-bold"
-                size="xs"
-              />
+              <HiHeart className="mr-2 h-4 w-4 font-bold" size="xs" />
             ) : (
               <HiOutlineHeart className="mr-2 h-4 w-4 font-bold" size="xs" />
             )}
             {/* <p className="text-xs font-semibold text-gray-700 dark:text-gray-400"> */}
-            <span className="text-xs">321</span>
+            <span className="text-xs">{blog.likes}</span>
             {/* </p> */}
           </Button>
           <Button color="gray" size="xs" style={{ height: "auto" }}>

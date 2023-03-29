@@ -1,6 +1,6 @@
 import { Blogs } from "@/types";
 import { gql } from "graphql-request";
-import { client } from "./client";
+import { query } from "./client";
 
 const QUERY = gql`
   {
@@ -17,7 +17,7 @@ const QUERY = gql`
 
 export default async function getBlogs() {
   try {
-    const { blogs } = await client.request<Blogs>(QUERY);
+    const { blogs } = await query.request<Blogs>(QUERY);
     return blogs;
   } catch (error) {
     console.error(error);

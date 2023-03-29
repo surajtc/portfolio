@@ -1,10 +1,13 @@
 import { GraphQLClient } from "graphql-request";
 
-const URL =
-  "https://us-east-1-shared-usea1-02.cdn.hygraph.com/content/clfmmtwlg09b401td18164kmk/master";
-
-export const client = new GraphQLClient(URL, {
+export const query = new GraphQLClient(`${process.env.URL_QUERY}`, {
   headers: {
-    Authorization: `Bearer ${process.env.API_AUTH_TOKEN}`,
+    authorization: `bearer ${process.env.AUTH_TOKEN_QUERY}`,
+  },
+});
+
+export const mutate = new GraphQLClient(`${process.env.URL_MUTATE}`, {
+  headers: {
+    authorization: `bearer ${process.env.AUTH_TOKEN_MUTATE}`,
   },
 });
