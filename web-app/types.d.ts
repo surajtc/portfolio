@@ -1,26 +1,27 @@
-// export type Blog = {
-//   title: string;
-//   slug: string;
-//   id: string;
-//   likes: number;
-//   content: any;
-// };
-
-export type BlogView = {
+export interface BlogView {
+  id: string;
   slug: string;
   title: string;
   description: string;
-  likes: number;
   cover: {
     url: string;
   };
-};
+}
+
+export interface Vote {
+  id: string;
+  votes: number;
+}
+
+export interface View {
+  id: string;
+  views: number;
+}
 
 interface Blog extends BlogView {
   content: any;
-  id: string;
 }
 
-export type Blogs = {
+export interface Blogs {
   blogs: Blog[];
-};
+}

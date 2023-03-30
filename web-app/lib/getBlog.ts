@@ -6,10 +6,13 @@ export default async function getBlog(slug: string) {
   const QUERY = gql`
     query Blog($slug: String!) {
       blog(where: { slug: $slug }) {
-        title
-        slug
         id
-        likes
+        slug
+        title
+        description
+        cover {
+          url
+        }
         content
       }
     }

@@ -1,41 +1,36 @@
 "use client";
 
-import { BlogView } from "@/types";
+import { BlogView, Vote } from "@/types";
 import BlogCard from "./BlogCard";
 import { useQuery } from "@tanstack/react-query";
 
 interface Props {
-  initial: BlogView[];
+  data: BlogView[];
 }
 
-async function fetchBlogs() {
-  const res = await fetch("/api/blogs");
-  const { blogs }: { blogs: BlogView[] } = await res.json();
-  return blogs;
-}
-
-export default function Blogs({ initial }: Props) {
-  const { data, isError } = useQuery({
-    queryKey: ["blogs"],
-    queryFn: fetchBlogs,
-    initialData: initial,
-  });
-
-  //   if (isLoading) {
-  //     return <span>Loading...</span>;
-  //   }
-
-  if (isError) {
-    return <span>Error</span>;
+export default function Blogs({ data }: Props) {
+  async function fetchAllVotes() {
+    const res = await fetch(`/api/blogs/votes`);
+    const { blogs }: { blogs: Vote[] } = await res.json();
+    return blogs;
   }
 
-  return (
+  const {
+    data: allVotes,
+    isLoading,
+    isRefetching,
+  } = useQuery({
+    queryKey: ["votes"],
+    queryFn: fetchAllVotes,
+  });
+
+  return allVotes ? (
     <div className="container mx-auto">
       <div className="grid gap-4 grid-cols-1 justify-center sm:grid-cols-2 lg:grid-cols-3 p-6 sm:p-0">
-        {data.map((i) => (
-          <BlogCard key={i.slug} blog={i} />
+        {data.map((item, index) => (
+          <BlogCard key={item.id} blog={item} vote={allVotes[index]} />
         ))}
       </div>
     </div>
-  );
+  ) : null;
 }

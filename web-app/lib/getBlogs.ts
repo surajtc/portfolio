@@ -6,10 +6,10 @@ export default async function getBlogs() {
   const QUERY = gql`
     query getBlogs {
       blogs {
+        id
         slug
         title
         description
-        likes
         cover {
           url
         }
