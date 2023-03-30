@@ -1,7 +1,8 @@
 import getBlogs from "@/lib/getBlogs";
 import Blogs from "./components/Blogs";
 
-export const revalidate = 3600;
+export const revalidate = 0;
+// export const dynamic = "force-dynamic";
 
 export default async function BlogsPage() {
   const { blogs } = await getBlogs();
