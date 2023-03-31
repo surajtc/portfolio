@@ -4,7 +4,6 @@ import { BlogView, Vote } from "@/types";
 import BlogCard from "./BlogCard";
 import { useQuery } from "@tanstack/react-query";
 
-export const fetchCache = "default-no-store";
 
 interface Props {
   data: BlogView[];
