@@ -1,8 +1,8 @@
-import getBlogs from "@/lib/getBlogs";
+import { getBlogs } from "@/lib/getBlogs";
 import Blogs from "./components/Blogs";
 
 // export const revalidate = 0;
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 // export const fetchCache = "default-no-store";
 
 export default async function BlogsPage() {

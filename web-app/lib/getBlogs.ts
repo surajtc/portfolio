@@ -1,9 +1,10 @@
 import "server-only";
+import { cache } from "react";
 import { BlogView } from "@/types";
 import { gql } from "graphql-request";
 import { query } from "./client";
 
-export default async function getBlogs() {
+export const getBlogs = cache(async () => {
   const QUERY = gql`
     query getBlogs {
       blogs {
@@ -19,4 +20,4 @@ export default async function getBlogs() {
   `;
 
   return query.request<{ blogs: BlogView[] }>(QUERY);
-}
+});

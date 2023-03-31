@@ -4,9 +4,9 @@ import { NextResponse } from "next/server";
 interface Params {
   id: string;
 }
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
-export const fetchCache = "default-no-store";
+// export const fetchCache = "default-no-store";
 
 export async function GET(_request: Request, context: { params: Params }) {
   const { id } = context.params;
