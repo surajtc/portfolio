@@ -1,3 +1,4 @@
+import "server-only";
 import { GraphQLClient } from "graphql-request";
 
 export const query = new GraphQLClient(`${process.env.URL_QUERY}`, {

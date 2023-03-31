@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { CgSpinner } from "react-icons/cg";
 import { HiHeart, HiOutlineHeart } from "react-icons/hi2";
 import { debounce } from "lodash";
+import { useRouter } from "next/navigation";
 
 interface Props {
   id: string;
@@ -16,6 +17,7 @@ interface Props {
 export default function VoteButton({ id, vote }: Props) {
   const [isActive, setIsActive] = useState(false);
   const [count, setCount] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
     const status = localStorage.getItem(id);
@@ -56,6 +58,7 @@ export default function VoteButton({ id, vote }: Props) {
       if (data) {
         setCount(data.votes);
       }
+      router.refresh();
       queryClient.invalidateQueries(["votes"]);
     },
   });

@@ -1,5 +1,5 @@
+import { getVotes } from "@/lib/getVotes";
 import { NextResponse } from "next/server";
-import getVotes from "@/lib/getVotes";
 
 interface Params {
   id: string;

@@ -1,3 +1,4 @@
+import "server-only";
 import { gql } from "graphql-request";
 import { Vote } from "@/types";
 import { mutate } from "./client";

@@ -1,3 +1,4 @@
+import "server-only";
 import { Blog } from "@/types";
 import { gql } from "graphql-request";
 import { query } from "./client";
