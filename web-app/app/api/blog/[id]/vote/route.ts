@@ -1,6 +1,8 @@
 import voteBlog from "@/lib/voteBlog";
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 interface Params {
   id: string;
 }

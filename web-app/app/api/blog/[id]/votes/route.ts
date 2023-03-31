@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 interface Params {
   id: string;
 }
+export const dynamic = "force-dynamic";
 
 export const fetchCache = "default-no-store";
 
