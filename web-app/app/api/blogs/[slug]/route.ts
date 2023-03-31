@@ -9,5 +9,6 @@ export async function GET(_request: Request, context: { params: Params }) {
   const { slug } = context.params;
 
   const { blog } = await getBlog(slug);
+
   return NextResponse.json({ ...blog });
 }

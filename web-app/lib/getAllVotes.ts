@@ -1,7 +1,7 @@
 import "server-only";
 import { cache } from "react";
-import { Vote } from "@/types";
 import { gql } from "graphql-request";
+import { Vote } from "@/types";
 import { query } from "./client";
 
 export const getAllVotes = cache(async () => {
@@ -16,3 +16,5 @@ export const getAllVotes = cache(async () => {
 
   return query.request<{ blogs: Vote[] }>(QUERY);
 });
+
+export default getAllVotes;

@@ -2,16 +2,15 @@
 
 import { BlogView, Vote } from "@/types";
 import { Button, Card } from "flowbite-react";
-import { HiShare } from "react-icons/hi2";
 import Link from "next/link";
-import VoteButton from "./VoteButton";
+import { ReactNode } from "react";
 
 interface Props {
   blog: BlogView;
-  vote: Vote;
+  children: ReactNode;
 }
 
-export default function BlogCard({ blog, vote }: Props) {
+export default function BlogCard({ blog, children }: Props) {
   return (
     <Card
       imgAlt={blog.title}
@@ -37,12 +36,7 @@ export default function BlogCard({ blog, vote }: Props) {
         >
           Read More
         </Button>
-        <Button.Group className="flex items-stretch">
-          <VoteButton id={blog.id} vote={vote} />
-          <Button color="gray" size="xs" style={{ height: "auto" }}>
-            <HiShare className="h-4 w-4" />
-          </Button>
-        </Button.Group>
+        {children}
       </div>
     </Card>
   );

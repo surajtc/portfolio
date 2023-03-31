@@ -1,9 +1,10 @@
-import { getAllVotes } from "@/lib/getAllVotes";
 import { NextResponse } from "next/server";
-
-export const dynamic = "force-dynamic";
+import getAllVotes from "@/lib/getAllVotes";
 
 export async function GET() {
   const { blogs } = await getAllVotes();
+
   return NextResponse.json({ blogs });
 }
+
+export const dynamic = "force-dynamic";

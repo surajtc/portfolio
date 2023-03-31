@@ -1,9 +1,10 @@
 import "server-only";
-import { Blog } from "@/types";
+import { cache } from "react";
 import { gql } from "graphql-request";
+import { Blog } from "@/types";
 import { query } from "./client";
 
-export default async function getBlog(slug: string) {
+export const getBlog = cache(async (slug: string) => {
   const QUERY = gql`
     query Blog($slug: String!) {
       blog(where: { slug: $slug }) {
@@ -19,4 +20,6 @@ export default async function getBlog(slug: string) {
     }
   `;
   return await query.request<{ blog: Blog }>(QUERY, { slug });
-}
+});
+
+export default getBlog;
