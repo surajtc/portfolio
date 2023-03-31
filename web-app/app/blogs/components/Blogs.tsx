@@ -16,11 +16,13 @@ async function fetchAllVotes() {
 }
 
 export default function Blogs({ data }: Props) {
-  const { data: allVotes } = useQuery({
+  const { data: allVotes, isInitialLoading } = useQuery({
     queryKey: ["votes"],
     queryFn: fetchAllVotes,
   });
-
+  if (isInitialLoading) {
+    return <div>loading...</div>;
+  }
   return allVotes ? (
     <div className="container mx-auto">
       <div className="grid gap-4 grid-cols-1 justify-center sm:grid-cols-2 lg:grid-cols-3 p-6 sm:p-0">

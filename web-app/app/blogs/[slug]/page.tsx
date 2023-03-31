@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import getBlog from "@/lib/getBlog";
 import { getBlogs } from "@/lib/getBlogs";
+import Markdown from "./components/Markdown";
 
 type Params = {
   params: {
@@ -47,6 +48,9 @@ export default async function BlogPage({ params: { slug } }: Params) {
         Blog: {blog.title}
         <p>{blog.id}</p>
       </div>
+      <article className="prose lg:prose-xl">
+        <Markdown content={blog.content} />
+      </article>
     </>
   );
 }

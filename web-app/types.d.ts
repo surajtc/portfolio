@@ -3,6 +3,7 @@ export interface BlogView {
   slug: string;
   title: string;
   description: string;
+  date: string;
   cover: {
     url: string;
   };
@@ -19,9 +20,5 @@ export interface View {
 }
 
 interface Blog extends BlogView {
-  content: any;
-}
-
-export interface Blogs {
-  blogs: Blog[];
+  content: string;
 }

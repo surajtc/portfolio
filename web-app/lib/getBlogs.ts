@@ -12,6 +12,7 @@ export const getBlogs = cache(async () => {
         slug
         title
         description
+        date
         cover {
           url
         }
