@@ -5,6 +5,8 @@ interface Params {
   id: string;
 }
 
+export const fetchCache = "default-no-store";
+
 export async function GET(_request: Request, context: { params: Params }) {
   const { id } = context.params;
 
