@@ -23,7 +23,7 @@ export default function BlogCard({ blog, children }: Props) {
             {blog.title}
           </h5>
 
-          <p className="relative after:absolute after:inset-x-0 after:bottom-0 after:h-16 after:bg-gradient-to-t from-white dark:from-gray-800 text-md font-normal text-gray-700 dark:text-gray-400">
+          <p className="relative line-clamp-3 after:absolute after:inset-x-0 after:bottom-0 after:h-16 after:bg-gradient-to-t from-white dark:from-gray-800 text-md font-normal text-gray-700 dark:text-gray-400">
             {blog.description}
           </p>
         </div>

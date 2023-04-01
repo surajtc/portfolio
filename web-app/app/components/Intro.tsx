@@ -1,10 +1,11 @@
 export default function Intro() {
   return (
     <div>
-      <h5 className="text-3xl py-2 font-bold tracking-tight text-gray-900 dark:text-white">
-        Suraj T C-- Student, University of Maryland
+      <h5 className="text-3xl pt-2 pb-4 leading-wide font-bold tracking-tight hidden md:block">
+        Suraj T C&mdash; Graduate Student, <br />
+        University of Maryland
       </h5>
-      <p className="indent-16 font-normal text-lg text-gray-700 dark:text-gray-400">
+      <p className="text-lg font-normal leading-loose  tracking-tight text-gray-700 dark:text-gray-400">
         Suraj is a graduate student in Machine Learning with experience as a
         Software Engineer at Mainteny and a Machine Learning Research Intern at
         IC Solutions. He has experience with ML Research, Computer Vision,

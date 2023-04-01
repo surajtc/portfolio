@@ -14,7 +14,13 @@ export default async function BlogsPage() {
 
   return (
     <div>
-      <h2 className="text-3xl font-bold underline">Page</h2>
+      <h2 className="text-3xl font-bold">Blogs</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione
+        deleniti sunt aliquid temporibus consequuntur magnam, deserunt officia
+        vitae architecto vel. Inventore, doloribus itaque maxime totam
+        laboriosam unde repudiandae voluptas explicabo?
+      </p>
       <Blogs data={blogs} />
     </div>
   );

@@ -12,7 +12,7 @@ export default function Profile() {
       <div className="relative overflow-hidden rounded-full aspect-square w-44 mx-auto border border-gray-200 dark:border-gray-700">
         <Image
           className="absolute object-cover"
-          src="/temp.jpg"
+          src="/profile.jpg"
           alt="Picture"
           fill
         />

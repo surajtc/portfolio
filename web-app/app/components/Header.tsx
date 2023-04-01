@@ -9,14 +9,14 @@ const caveat = Caveat({
   subsets: ["latin"],
 });
 
-export default function Nav() {
+export default function Header() {
   const path = usePathname();
   return (
     <Navbar fluid border className="[&>div]:max-w-4xl">
       <Navbar.Brand as="div">
         <Link href="/">
           <span
-            className={`${caveat.className} self-center whitespace-nowrap text-2xl font-bold dark:text-white`}
+            className={`${caveat.className} self-center whitespace-nowrap text-2xl font-bold`}
           >
             {"< Suraj TC />"}
           </span>
