@@ -11,12 +11,13 @@ import { getLocalStorage, handleStorage } from "@/utils/utils";
 
 interface Props {
   id: string;
-  initial: Vote;
+  initial?: Vote;
+  loading?: boolean;
 }
 
-export default function VoteButton({ id, initial }: Props) {
-  const [isActive, setIsActive] = useState(getLocalStorage(id));
-  const [count, setCount] = useState(initial.votes);
+export default function VoteButton({ id, initial, loading }: Props) {
+  const [isActive, setIsActive] = useState(false);
+  const [count, setCount] = useState(0);
 
   const queryClient = useQueryClient();
 
@@ -50,11 +51,23 @@ export default function VoteButton({ id, initial }: Props) {
     };
   }, [debouncedButton]);
 
+  useEffect(() => {
+    if (initial) setCount(initial.votes);
+  }, [initial]);
+
+  useEffect(() => {
+    setIsActive(getLocalStorage(id));
+  }, [id]);
+
   const handleClick = () => {
     setCount((p) => (isActive ? --p : ++p));
     setIsActive((p) => !p);
     debouncedButton();
   };
+
+  if (loading) {
+    return <p>button load</p>;
+  }
 
   return (
     <Button.Group className="flex items-stretch">

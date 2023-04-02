@@ -20,18 +20,20 @@ export default function Blogs({ data }: Props) {
     queryKey: ["votes"],
     queryFn: fetchAllVotes,
   });
-  if (isInitialLoading) {
-    return <div>loading...</div>;
-  }
-  return allVotes ? (
+
+  return (
     <div className="container mx-auto">
       <div className="grid gap-4 grid-cols-1 justify-center sm:grid-cols-2 lg:grid-cols-3 p-6 sm:p-0">
         {data.map((item, index) => (
           <BlogCard key={item.id} blog={item}>
-            <VoteButton id={item.id} initial={allVotes[index]} />
+            <VoteButton
+              id={item.id}
+              initial={allVotes ? allVotes[index] : undefined}
+              loading={isInitialLoading}
+            />
           </BlogCard>
         ))}
       </div>
     </div>
-  ) : null;
+  );
 }
