@@ -23,7 +23,7 @@ export default function Blogs({ data }: Props) {
 
   return (
     <div className="container mx-auto">
-      <div className="grid gap-4 grid-cols-1 justify-center sm:grid-cols-2 lg:grid-cols-3 p-6 sm:p-0">
+      <div className="grid gap-4 grid-cols-1 justify-center sm:grid-cols-2 lg:grid-cols-3 p-6 sm:p-0 masonry">
         {data.map((item, index) => (
           <BlogCard key={item.id} blog={item}>
             <VoteButton

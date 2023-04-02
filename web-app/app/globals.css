@@ -24,3 +24,22 @@ a {
     color-scheme: light;
   }
 }
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.masonry {
+  /* display: grid; */
+  /* grid-template-columns: repeat(4, 1fr); */
+  grid-template-rows: masonry;
+}

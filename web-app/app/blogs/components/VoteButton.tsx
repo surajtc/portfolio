@@ -1,7 +1,7 @@
 "use client";
 
 import { Vote } from "@/types";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "flowbite-react";
 import { useEffect, useRef, useState } from "react";
 import { CgSpinner } from "react-icons/cg";
@@ -17,6 +17,7 @@ interface Props {
 
 export default function VoteButton({ id, initial, loading }: Props) {
   const [isActive, setIsActive] = useState(false);
+  // const [isVisible, setIsVisible] = useState(false);
   const [count, setCount] = useState(0);
 
   const queryClient = useQueryClient();
@@ -65,32 +66,65 @@ export default function VoteButton({ id, initial, loading }: Props) {
     debouncedButton();
   };
 
-  if (loading) {
-    return <p>button load</p>;
-  }
-
   return (
-    <Button.Group className="flex items-stretch">
-      <Button
-        color="gray"
-        className="hover:text-red-700 disabled:hover:bg-white focus:ring-red-500 focus:text-red-700 dark:bg-transparent dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-2 dark:disabled:hover:bg-gray-800"
-        onClick={() => {
-          handleClick();
-        }}
-        disabled={isMutating}
-      >
-        {isMutating ? (
-          <CgSpinner className="animate-spin" />
-        ) : isActive ? (
-          <HiHeart className="mr-2 h-4 w-4 font-bold" size="xs" />
+    <>
+      <Button.Group className="flex items-stretch">
+        {loading ? (
+          <Button
+            color="gray"
+            className="hover:text-red-700 disabled:hover:bg-white focus:ring-red-500 focus:text-red-700 dark:bg-transparent dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-2 dark:disabled:hover:bg-gray-800"
+            disabled
+            size="sm"
+          >
+            <HiHeart
+              className="animate-pulse mr-2 h-4 w-4 font-bold"
+              size="xs"
+            />
+            <span className="animate-pulse text-sm invisible">00</span>
+          </Button>
         ) : (
-          <HiOutlineHeart className="mr-2 h-4 w-4 font-bold" size="xs" />
+          <Button
+            color="gray"
+            className="hover:text-red-700 disabled:hover:bg-white focus:ring-red-500 focus:text-red-700 dark:bg-transparent dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-2 dark:disabled:hover:bg-gray-800"
+            onClick={() => {
+              handleClick();
+            }}
+            disabled={isMutating}
+            size="sm"
+          >
+            {isMutating ? (
+              <CgSpinner className="mr-2 h-4 w-4 font-bold text-gray-500 animate-spin" />
+            ) : isActive ? (
+              <HiHeart className="mr-2 h-4 w-4 font-bold" size="xs" />
+            ) : (
+              <HiOutlineHeart className="mr-2 h-4 w-4 font-bold" size="xs" />
+            )}
+            <span className="text-sm">{count}</span>
+          </Button>
         )}
-        <span className="text-sm">{count}</span>
-      </Button>
-      <Button color="gray" size="xs" style={{ height: "auto" }}>
-        <HiShare className="h-4 w-4" />
-      </Button>
-    </Button.Group>
+
+        <Button color="gray" size="xs" style={{ height: "auto" }}>
+          <HiShare className="h-4 w-4" />
+        </Button>
+      </Button.Group>
+      {/* <Modal show={isVisible} onClose={() => setIsVisible(false)}>
+        <Modal.Header>Terms of Service</Modal.Header>
+        <Modal.Body>
+          <div className="space-y-6">
+            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+              With less than a month to go before the European Union enacts new
+              consumer privacy laws for its citizens, companies around the world
+              are updating their terms of service agreements to comply.
+            </p>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={() => console.log("CLICK")}>I accept</Button>
+          <Button color="gray" onClick={() => setIsVisible(false)}>
+            Decline
+          </Button>
+        </Modal.Footer>
+      </Modal> */}
+    </>
   );
 }
