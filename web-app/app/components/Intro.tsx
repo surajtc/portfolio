@@ -5,20 +5,15 @@ export default function Intro() {
         Suraj T C&mdash; Graduate Student, <br />
         University of Maryland
       </h5>
-      <p className="text-lg font-normal leading-loose  tracking-tight text-gray-700 dark:text-gray-400">
-        Suraj is a graduate student in Machine Learning with experience as a
-        Software Engineer at Mainteny and a Machine Learning Research Intern at
-        IC Solutions. He has experience with ML Research, Computer Vision,
-        Natural Language Processing, Data Science, MLOps, and Software
-        Development using C++, Python, R, Flask, SQL, MongoDB, and ML libraries
-        such as TensorFlow, PyTorch, Scikit-learn, Matplotlib, OpenCV, Spacy,
-        NLTK, and HuggingFace. Suraj has completed relevant coursework and
-        projects, including a chatbot for First Aid Assistance, an
-        image-to-image art style translator, and a Tableau dashboard to show the
-        S&P 500 stock growth. He has also been awarded several accolades and
-        served as a Teaching Assistant for several courses. Suraj is a Machine
-        Learning Specialization by the University of Washington and Database and
-        SQL for Data Science by IBM.
+      <p className="text-lg pb-4 font-normal leading-relaxed  tracking-tight text-gray-700 dark:text-gray-400">
+        {`Suraj is a graduate student studying Machine Learning at the University
+        of Maryland, College Park. With a passion for applying machine learning
+        to solve real-world problems, Suraj has gained expertise in various
+        algorithms and frameworks and is committed to advancing his knowledge
+        and skills in the field.`}
+      </p>
+      <p className="text-lg font-normal leading-relaxed tracking-tight text-gray-700 dark:text-gray-400">
+        {`Suraj has prior industry experience as a Software Engineer at Mainteny, where he contributed to building and automating end-to-end maintenance tasks, and as a ML Researcher at IC Solutions, where he assisted in solving business problems using machine learning. He holds a bachelor's degree in Computer Science from Visveswaraya Technological University, India.`}
       </p>
     </div>
   );

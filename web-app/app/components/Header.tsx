@@ -33,7 +33,7 @@ export default function Header() {
       <Navbar.Collapse>
         {[
           { name: "Home", path: "/" },
-          { name: "About", path: "/about" },
+          // { name: "About", path: "/about" },
           { name: "Blogs", path: "/blogs" },
         ].map((item, index) => (
           <Navbar.Link
