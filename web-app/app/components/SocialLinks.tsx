@@ -19,18 +19,31 @@ export default function SocialLinks({ showLocation }: Props) {
       )}
 
       {[
-        { icon: <HiEnvelope />, text: "stelugar@umd.edu", link: "/blogs" },
+        {
+          icon: <HiEnvelope />,
+          text: "stelugar@umd.edu",
+          link: "mailto:stelugar@umd.edu",
+        },
         {
           icon: <HiEnvelope />,
           text: "mail.surajtc@gmail.com",
-          link: "/blogs",
+          link: "mailto:mail.surajtc@gmail.com",
         },
-        { icon: <FaLinkedin />, text: "LinkedIn", link: "/blogs" },
-        { icon: <FaGithub />, text: "Github", link: "/blogs" },
+        {
+          icon: <FaLinkedin />,
+          text: "LinkedIn",
+          link: "https://linkedin.com/in/surajtc",
+        },
+        {
+          icon: <FaGithub />,
+          text: "Github",
+          link: "https://github.com/surajtc",
+        },
       ].map((item, index) => (
         <Link
           key={index}
           href={item.link}
+          target="_blank"
           className="flex gap-2 items-center py-1"
         >
           {item.icon}

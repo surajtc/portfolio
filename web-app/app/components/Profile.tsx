@@ -19,7 +19,7 @@ export default function Profile() {
         <h5 className="text-2xl py-2 font-bold tracking-tight text-gray-900 dark:text-white border-b border-gray-200 dark:border-gray-700">
           Suraj T. Chandrashekhar
         </h5>
-        <h5 className="text-lg font-normal tracking-tight text-gray-700 dark:text-white">
+        <h5 className="font-normal tracking-tight text-gray-700 dark:text-white">
           Graduate Student
           <br />
           University of Maryland

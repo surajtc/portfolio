@@ -5,7 +5,7 @@
 import remarkGfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
 import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 interface Props {
   content: string;
@@ -21,7 +21,7 @@ export default function Markdown({ content }: Props) {
             const match = /language-(\w+)/.exec(className || "");
             return !inline && match ? (
               <SyntaxHighlighter
-                style={dracula}
+                style={oneDark}
                 language={match[1]}
                 PreTag="div"
                 {...props}

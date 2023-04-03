@@ -1,6 +1,8 @@
+import Link from "next/link";
+
 export default function Intro() {
   return (
-    <div>
+    <div className="text-center md:text-left">
       <h5 className="text-3xl pt-2 pb-4 leading-wide font-bold tracking-tight hidden md:block">
         Suraj T C&mdash; Graduate Student, <br />
         University of Maryland
@@ -13,7 +15,27 @@ export default function Intro() {
         and skills in the field.`}
       </p>
       <p className="text-lg font-normal leading-relaxed tracking-tight text-gray-700 dark:text-gray-400">
-        {`Suraj has prior industry experience as a Software Engineer at Mainteny, where he contributed to building and automating end-to-end maintenance tasks, and as a ML Researcher at IC Solutions, where he assisted in solving business problems using machine learning. He holds a bachelor's degree in Computer Science from Visveswaraya Technological University, India.`}
+        {`Suraj has prior industry experience as a Software Engineer at `}
+        {
+          <Link
+            href="https://www.mainteny.com/"
+            target="_blank"
+            className="underline underline-offset-2"
+          >
+            Mainteny
+          </Link>
+        }
+        {`, where he contributed to building and automating end-to-end maintenance tasks, and as a ML Researcher at `}
+        {
+          <Link
+            href="https://icsoln.com/"
+            target="_blank"
+            className="underline underline-offset-2"
+          >
+            IC Solutions
+          </Link>
+        }
+        {`, where he assisted in solving business problems using machine learning. He holds a bachelor's degree in Computer Science from Visveswaraya Technological University, India.`}
       </p>
     </div>
   );

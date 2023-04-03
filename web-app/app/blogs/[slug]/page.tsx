@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import getBlog from "@/lib/getBlog";
 import { getBlogs } from "@/lib/getBlogs";
 import Markdown from "./components/Markdown";
+import Image from "next/image";
 
 type Params = {
   params: {
@@ -43,12 +44,20 @@ export default async function BlogPage({ params: { slug } }: Params) {
 
   return (
     <>
-      <h2 className="text-3xl font-bold underline">Blog Details</h2>
-      <div>
-        Blog: {blog.title}
-        <p>{blog.id}</p>
+      <h2 className="text-2xl py-2 font-bold tracking-tight">{blog.title}</h2>
+      <p className="text-lg pb-6 font-normal leading-relaxed tracking-tight text-gray-700 dark:text-gray-400">
+        {blog.description}
+      </p>
+      <div className="relative overflow-hidden aspect-video rounded-lg w-full mx-auto border border-gray-200 dark:border-gray-700">
+        <Image
+          className="absolute object-cover rounded-lg"
+          src={blog.cover.url}
+          alt={blog.title}
+          sizes="(max-width: 768px) 100vw"
+          fill
+        />
       </div>
-      <article className="prose lg:prose-xl">
+      <article className="prose lg:prose-xl prose-slate dark:prose-invert prose-pre:bg-[#282c34] min-w-full">
         <Markdown content={blog.content} />
       </article>
     </>
