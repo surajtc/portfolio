@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Intro() {
   return (
-    <div className="text-center md:text-left">
+    <div className="p-4 md:p-0">
       <h5 className="text-3xl pt-2 pb-4 leading-wide font-bold tracking-tight hidden md:block">
         Suraj T C&mdash; Graduate Student, <br />
         University of Maryland

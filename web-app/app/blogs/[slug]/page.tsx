@@ -48,7 +48,7 @@ export default async function BlogPage({ params: { slug } }: Params) {
       <p className="text-lg pb-6 font-normal leading-relaxed tracking-tight text-gray-700 dark:text-gray-400">
         {blog.description}
       </p>
-      <div className="relative overflow-hidden aspect-video rounded-lg w-full mx-auto border border-gray-200 dark:border-gray-700">
+      <div className="relative overflow-hidden aspect-video rounded-lg w-full mx-auto">
         <Image
           className="absolute object-cover rounded-lg"
           src={blog.cover.url}
