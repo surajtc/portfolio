@@ -3,6 +3,7 @@ import getBlog from "@/lib/getBlog";
 import { getBlogs } from "@/lib/getBlogs";
 import Markdown from "./components/Markdown";
 import Image from "next/image";
+import PageCard from "./components/PageCard";
 
 type Params = {
   params: {
@@ -57,6 +58,7 @@ export default async function BlogPage({ params: { slug } }: Params) {
           fill
         />
       </div>
+      <PageCard id={blog.id} />
       <article className="prose lg:prose-xl prose-slate dark:prose-invert prose-pre:bg-[#282c34] min-w-full">
         <Markdown content={blog.content} />
       </article>

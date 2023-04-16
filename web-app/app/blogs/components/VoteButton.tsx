@@ -61,9 +61,9 @@ export default function VoteButton({ id, initial, loading }: Props) {
     setIsActive(getLocalStorage(id));
   }, [id]);
 
-  useEffect(() => {
-    initModals();
-  }, []);
+  // useEffect(() => {
+  //   initModals();
+  // }, []);
 
   const handleClick = () => {
     setCount((p) => (isActive ? --p : ++p));
