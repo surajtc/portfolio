@@ -2,12 +2,13 @@
 
 import { Vote } from "@/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Button } from "flowbite-react";
+import { Button, Modal } from "flowbite-react";
 import { useEffect, useRef, useState } from "react";
 import { CgSpinner } from "react-icons/cg";
 import { HiHeart, HiOutlineHeart, HiShare } from "react-icons/hi2";
 import { debounce } from "lodash";
 import { getLocalStorage, handleStorage } from "@/utils/utils";
+import { initModals } from "flowbite";
 
 interface Props {
   id: string;
@@ -17,7 +18,7 @@ interface Props {
 
 export default function VoteButton({ id, initial, loading }: Props) {
   const [isActive, setIsActive] = useState(false);
-  // const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const [count, setCount] = useState(0);
 
   const queryClient = useQueryClient();
@@ -59,6 +60,10 @@ export default function VoteButton({ id, initial, loading }: Props) {
   useEffect(() => {
     setIsActive(getLocalStorage(id));
   }, [id]);
+
+  useEffect(() => {
+    initModals();
+  }, []);
 
   const handleClick = () => {
     setCount((p) => (isActive ? --p : ++p));
@@ -103,28 +108,35 @@ export default function VoteButton({ id, initial, loading }: Props) {
           </Button>
         )}
 
-        <Button color="gray" size="xs" style={{ height: "auto" }}>
+        <Button
+          color="gray"
+          size="xs"
+          style={{ height: "auto" }}
+          onClick={() => setIsVisible(true)}
+        >
           <HiShare className="h-4 w-4" />
         </Button>
       </Button.Group>
-      {/* <Modal show={isVisible} onClose={() => setIsVisible(false)}>
-        <Modal.Header>Terms of Service</Modal.Header>
-        <Modal.Body>
-          <div className="space-y-6">
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-              With less than a month to go before the European Union enacts new
-              consumer privacy laws for its citizens, companies around the world
-              are updating their terms of service agreements to comply.
-            </p>
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={() => console.log("CLICK")}>I accept</Button>
-          <Button color="gray" onClick={() => setIsVisible(false)}>
-            Decline
-          </Button>
-        </Modal.Footer>
-      </Modal> */}
+      {
+        <Modal show={isVisible} onClose={() => setIsVisible(false)}>
+          <Modal.Header>Terms of Service</Modal.Header>
+          <Modal.Body>
+            <div className="space-y-6">
+              <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                With less than a month to go before the European Union enacts
+                new consumer privacy laws for its citizens, companies around the
+                world are updating their terms of service agreements to comply.
+              </p>
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={() => console.log("CLICK")}>I accept</Button>
+            <Button color="gray" onClick={() => setIsVisible(false)}>
+              Decline
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      }
     </>
   );
 }

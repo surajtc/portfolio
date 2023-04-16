@@ -15,15 +15,15 @@ export default function Footer() {
             <SocialLinks showLocation />
           </div>
         )}
-        <div className="text-sm pt-2 mt-2 flex flex-col gap-4 md:flex-row items-center justify-between border-t md:border-0 border-gray-200 dark:border-gray-700">
-          <span className="text-gray-600 dark:text-gray-400 w-full md:w-auto">
-            {"Made with "}
-            {<FaHeart className="inline text-xs" />}
-            {" by Suraj"}
-          </span>
+        <div className="text-sm pt-2 flex items-center justify-between border-gray-200 dark:border-gray-700">
+          <span>{"© 2023 Suraj T C"}</span>
 
           <div className="flex justify-between w-full md:w-auto">
-            <span className="pr-4">{"© 2023 Suraj T C"}</span>
+            <span className="text-gray-600 pr-4 dark:text-gray-400 w-full md:w-auto">
+              {"Made with "}
+              {<FaHeart className="inline text-xs" />}
+              {" by Suraj"}
+            </span>
             <Link href="https://github.com/SurajTC/portfolio" target="_blank">
               <FaGithub className="inline md:mb-1" />
             </Link>
